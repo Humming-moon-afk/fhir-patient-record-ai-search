@@ -4,8 +4,10 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import java.util.Date;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 @Entity
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class PatientEntity {
     @Id
     @JsonProperty("patientID")

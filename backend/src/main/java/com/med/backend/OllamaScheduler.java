@@ -26,10 +26,13 @@ public class OllamaScheduler {
         Map response = restTemplate.postForObject(url, request, Map.class);
         if(response!=null && response.containsKey("response")) {
             String jsonString = (String) response.get("response");
-            System.out.println("Antwort " + jsonString);
+            String cleanedJson = jsonString.replaceAll("```json", "")
+                                   .replaceAll("```", "")
+                                   .trim();
+            System.out.println("Antwort " + cleanedJson);
             ObjectMapper mapper = new ObjectMapper();
             try {
-            PatientEntity entity = mapper.readValue(jsonString, PatientEntity.class);
+            PatientEntity entity = mapper.readValue(cleanedJson, PatientEntity.class);
             patientRepository.save(entity);
             System.out.println("Erfolg");
             } catch (Exception e) {
