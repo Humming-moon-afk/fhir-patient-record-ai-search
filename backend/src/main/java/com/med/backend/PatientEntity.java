@@ -1,68 +1,109 @@
 package com.med.backend;
 
+import java.util.Date;
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
-import java.util.Date;
-
+import com.fasterxml.jackson.annotation.JsonAlias;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.databind.JsonNode;
 @Entity
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class PatientEntity {
+
     @Id
     @JsonProperty("patientID")
-    String ID;
-    String firstName;
-    String lastName;
-    String gender;
-    Date birthDate;
-    String managingClinic;
+    @JsonAlias({"patientId", "id", "ID"})
+    private String id;
 
-    @JsonProperty("Sonstiges")
-    String sonstiges;
+    private String firstName;
+    private String lastName;
+    private String gender;
+    private Date birthDate;
+    private String managingClinic;
+
+   @JsonProperty("sonstiges")
+    @JsonAlias({
+        " sonstiges", " Sonstiges",
+        "elsewise", "otherInfo", "Sonstiges", "notes",
+        "besonderheiten", "Besonderheiten", "symptome", "Symptome"
+    })
+    private String sonstiges;
+
+    @Column(columnDefinition = "vector(768)")
+    private float[] vector;
+
     public PatientEntity() {
+    }
 
-    }
     public String getID() {
-        return ID;
+        return id;
     }
-    public void setID(String iD) {
-        ID = iD;
+
+    public void setID(String id) {
+        this.id = id;
     }
+
     public String getFirstName() {
         return firstName;
     }
+
     public void setFirstName(String firstName) {
         this.firstName = firstName;
     }
+
     public String getLastName() {
         return lastName;
     }
+
     public void setLastName(String lastName) {
         this.lastName = lastName;
     }
+
     public String getGender() {
         return gender;
     }
+
     public void setGender(String gender) {
         this.gender = gender;
     }
+
     public Date getBirthDate() {
         return birthDate;
     }
+
     public void setBirthDate(Date birthDate) {
         this.birthDate = birthDate;
     }
+
     public String getManagingClinic() {
         return managingClinic;
     }
+
     public void setManagingClinic(String managingClinic) {
         this.managingClinic = managingClinic;
     }
+
     public String getSonstiges() {
         return sonstiges;
     }
-    public void setSonstiges(String sonstiges) {
-        this.sonstiges = sonstiges;
+
+    public void setSonstiges(JsonNode node) {
+        if (node == null || node.isNull()) {
+            this.sonstiges = null;
+        } else if (node.isValueNode()) {
+            this.sonstiges = node.asText(); 
+        } else {
+            this.sonstiges = node.toString(); 
+        }
+    }
+
+    public float[] getVector() {
+        return vector;
+    }
+
+    public void setVector(float[] vector) {
+        this.vector = vector;
     }
 }
