@@ -29,8 +29,8 @@ public class PatientController {
         System.out.println("==========================================");
         return "Patientendaten erfolgreich empfangen und in Datenbank gespeichert!";
     }
-    @GetMapping("/search")
-    public List<PatientEntity> searchPatients(
+   @GetMapping("/search")
+    public List<PatientSearchResult> searchPatients(
             @RequestParam("q") String query,
             @RequestParam(value = "limit", defaultValue = "5") int limit) {
 
@@ -43,7 +43,6 @@ public class PatientController {
 
         if (embedResponse != null && embedResponse.containsKey("embedding")) {
             List<Double> doubleList = (List<Double>) embedResponse.get("embedding");
-
             String vectorString = doubleList.toString();
 
             return patientRepository.findSimilarPatients(vectorString, limit);
