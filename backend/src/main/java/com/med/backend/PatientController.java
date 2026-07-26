@@ -3,6 +3,10 @@ package com.med.backend;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.client.RestTemplate;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 @RestController
 @RequestMapping("/api/patients")
@@ -12,6 +16,7 @@ public class PatientController {
     private PatientRepository patientRepository;
     @Autowired
     private FhirService fhirService;
+    private RestTemplate restTemplate = new RestTemplate();
     @PostMapping
     public String receivePatientData(@RequestBody String patientJson) throws Exception {
         System.out.println("=== PATIENTENDATEN IM BACKEND EMPFANGEN ===");
@@ -24,4 +29,27 @@ public class PatientController {
         System.out.println("==========================================");
         return "Patientendaten erfolgreich empfangen und in Datenbank gespeichert!";
     }
+    @GetMapping("/search")
+    public List<PatientEntity> searchPatients(
+            @RequestParam("q") String query,
+            @RequestParam(value = "limit", defaultValue = "5") int limit) {
+
+        String embedUrl = "http://localhost:11434/api/embeddings";
+        Map<String, Object> embedRequest = new HashMap<>();
+        embedRequest.put("model", "nomic-embed-text");
+        embedRequest.put("prompt", query);
+
+        Map embedResponse = restTemplate.postForObject(embedUrl, embedRequest, Map.class);
+
+        if (embedResponse != null && embedResponse.containsKey("embedding")) {
+            List<Double> doubleList = (List<Double>) embedResponse.get("embedding");
+
+            String vectorString = doubleList.toString();
+
+            return patientRepository.findSimilarPatients(vectorString, limit);
+        }
+
+        return List.of();
+    }
+
 }
