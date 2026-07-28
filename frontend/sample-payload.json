@@ -1,9 +1,12 @@
 {
-    "firstName" : "Max" ,
-    "lastName" : "Mustermann" ,
-    "patientID" : "P-1048",
-    "gender" : "female",
-    "birthDate" : "1995-04-15",
-    "managingClinic" : "UMM" ,
-    "Sonstiges" : "Leukämie"
+  "firstName": "Max",
+  "lastName": "Mustermann",
+  "patientID": "P-101",
+  "gender": "male",
+  "birthDate": "1990-01-01",
+  "managingClinic": "Charité",
+  "Puls": "78",
+  "Blutdruck": "120/80",
+  "Notfallstufe": "Normal",
+  "Sonstiges": "Keine Auffälligkeiten"
 }
