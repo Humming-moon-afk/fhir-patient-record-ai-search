@@ -3,7 +3,8 @@
 const patientForm = document.getElementById('PatientForm');
 
 const emergencyColor = document.getElementById('Notfallstufe')
-emergencyColor.addEventListener('change', function(event) {
+
+function updateEmergencyColor() {
    if(emergencyColor.value == 'Normal') {
     emergencyColor.style.background = 'green'
    }
@@ -13,6 +14,10 @@ emergencyColor.addEventListener('change', function(event) {
    else {
     emergencyColor.style.background = 'red'
    }
+}
+updateEmergencyColor();
+emergencyColor.addEventListener('change', function(event) {
+   updateEmergencyColor();
 })
 
 patientForm.addEventListener('submit', function(event) {
