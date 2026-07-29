@@ -54,7 +54,27 @@ public class FhirService {
         new StringType(text)
         );
         }
-        
+        if(rootNode.has("Puls") && !rootNode.get("Puls").isEmpty()) {
+            String text = rootNode.get("Puls").asText();
+            patient.addExtension (
+                "http://example.org/fhir/StructureDefinition/patient-Puls",
+                new StringType(text)
+            );
+            }
+            if(rootNode.has("Notfallstufe") && !rootNode.get("Notfallstufe").isEmpty()) {
+            String text = rootNode.get("Notfallstufe").asText();
+            patient.addExtension (
+                "http://example.org/fhir/StructureDefinition/patient-Notfallstufe",
+                new StringType(text)
+            );
+            }
+            if(rootNode.has("Blutdruck") && !rootNode.get("Blutdruck").isEmpty()) {
+            String text = rootNode.get("Blutdruck").asText();
+            patient.addExtension (
+                "http://example.org/fhir/StructureDefinition/patient-Blutdruck",
+                new StringType(text)
+            );
+            }
         HumanName name = patient.addName();
         name.addGiven(vorname);
         name.setFamily(nachname);
