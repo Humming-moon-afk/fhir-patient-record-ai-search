@@ -23,6 +23,7 @@ public class PatientController {
         System.out.println(patientJson);
         ObjectMapper mapper = new ObjectMapper();
         PatientEntity entity = mapper.readValue(patientJson, PatientEntity.class);
+        System.out.println(entity.getBlutdruck() + ", " + entity.getPuls() + ", " + entity.getNotfallstufe());
         patientRepository.save(entity);
         String json = fhirService.jsonFHIR(patientJson);
         System.out.println(json);
