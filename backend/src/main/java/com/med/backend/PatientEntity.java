@@ -22,6 +22,9 @@ public class PatientEntity {
     private String gender;
     private Date birthDate;
     private String managingClinic;
+    private String Puls;
+    private String Blutdruck;
+    private String Notfallstufe;
 
    @JsonProperty("sonstiges")
     @JsonAlias({
@@ -105,5 +108,29 @@ public class PatientEntity {
 
     public void setVector(float[] vector) {
         this.vector = vector;
+    }
+
+    public String getPuls() {
+        return Puls;
+    }
+
+    public void setPuls(String puls) {
+        Puls = puls;
+    }
+
+    public String getBlutdruck() {
+        return Blutdruck;
+    }
+
+    public void setBlutdruck(String blutdruck) {
+        Blutdruck = blutdruck;
+    }
+
+    public String getNotfallstuffe() {
+        return Notfallstufe;
+    }
+
+    public void setNotfallstufe(String notfallstuffe) {
+        Notfallstufe = Notfallstufe;
     }
 }
