@@ -13,6 +13,9 @@ public interface PatientRepository extends JpaRepository<PatientEntity, String> 
                    "gender, " +
                    "birth_date AS birthDate, " +
                    "managing_clinic AS managingClinic, " +
+                   "Puls AS Puls, " + 
+                   "Blutdruck AS Blutdruck, " + 
+                   "Notfallstufe AS Notfallstufe, " +
                    "sonstiges " +
                    "FROM patient_entity " +
                    "WHERE vector IS NOT NULL " +
