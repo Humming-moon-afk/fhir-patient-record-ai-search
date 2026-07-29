@@ -27,7 +27,7 @@ public class OllamaScheduler {
         request.put("prompt", 
             "Generiere einen zufälligen deutschen Patienten im JSON-Format. " +
 "WICHTIG: Nutze exakt die vorgegebenen Feldnamen (insbesondere 'sonstiges') und erstelle keine eigenen Key-Namen! " +
-"Felder: patientID, firstName, lastName, gender, birthDate, managingClinic, sonstiges."
+"Felder: patientID, firstName, lastName, gender, birthDate, managingClinic, sonstiges, Puls, Blutdruck, Notfallstufe"
         );
 
         Map response = restTemplate.postForObject(url, request, Map.class);
