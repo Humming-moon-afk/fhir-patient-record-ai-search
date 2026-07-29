@@ -9,5 +9,8 @@ public interface PatientSearchResult {
     String getGender();
     Date getBirthDate();
     String getManagingClinic();
+    String getPuls();
+    String getBlutdruck();
+    String getNotfallstufe();
     String getSonstiges();
 }
