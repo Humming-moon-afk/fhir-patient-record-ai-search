@@ -22,8 +22,11 @@ public class PatientEntity {
     private String gender;
     private Date birthDate;
     private String managingClinic;
+    @JsonAlias({"Pulse", "Heart-beat", "puls"})
     private String Puls;
+    @JsonAlias({"Blood-pressure", "Blutdruck", "blutdruck"})
     private String Blutdruck;
+    @JsonAlias({"emergency", "notfallstufe", "Notfallstufe"})
     private String Notfallstufe;
 
    @JsonProperty("sonstiges")
@@ -126,11 +129,11 @@ public class PatientEntity {
         Blutdruck = blutdruck;
     }
 
-    public String getNotfallstuffe() {
+    public String getNotfallstufe() {
         return Notfallstufe;
     }
 
-    public void setNotfallstufe(String notfallstuffe) {
-        Notfallstufe = Notfallstufe;
+    public void setNotfallstufe(String notfallstufe) {
+        this.Notfallstufe = notfallstufe;
     }
 }
