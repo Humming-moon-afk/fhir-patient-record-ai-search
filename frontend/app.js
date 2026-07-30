@@ -4,6 +4,18 @@ const patientForm = document.getElementById('PatientForm');
 
 const emergencyColor = document.getElementById('Notfallstufe')
 
+const Sinput = document.getElementById('Search-input')
+
+const Sbutton = document.getElementById('Search-button')
+
+const Sresult = document.getElementById('Search-results')
+
+Sbutton.addEventListener('click', function(event) {
+    const query = Sinput.value;
+    console.log(query);
+});
+
+
 function updateEmergencyColor() {
    if(emergencyColor.value == 'Normal') {
     emergencyColor.style.background = 'green'
