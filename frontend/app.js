@@ -24,11 +24,11 @@ Sbutton.addEventListener('click', function(event) {
             const card = document.createElement('div');
             card.innerHTML = `
             <h3>${patient.firstName} ${patient.lastName}</h3>
-            <p>Klinik: ${patient.managingClinic}</p>
-            <p>Puls: ${patient.puls || patient.Puls} | Blutdruck: ${patient.blutdruck || patient.Blutdruck}</p>
-            <p>Notfallstufe: ${patient.notfallstufe || patient.Notfallstufe}</p>
-            <p>Symptome: ${patient.sonstiges}</p>
-        `;
+            <p><strong>Klinik:</strong> ${patient.managingClinic}</p>
+            <p><strong>Puls:</strong> ${patient.puls || patient.Puls || '-'} | <strong>Blutdruck:</strong> ${patient.blutdruck || patient.Blutdruck || '-'}</p>
+            <p><strong>Notfallstufe:</strong> ${patient.notfallstufe || patient.Notfallstufe || 'Normal'}</p>
+            <p><strong>Symptome:</strong> ${patient.sonstiges}</p>
+            `;
         Sresult.appendChild(card);
     });
     
