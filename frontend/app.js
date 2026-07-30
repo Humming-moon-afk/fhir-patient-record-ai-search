@@ -19,16 +19,20 @@ Sbutton.addEventListener('click', function(event) {
     })
     .then(response => response.json())
     .then(data => {
-       const card = document.createElement('div');
-    card.innerHTML = `
-    <h3>${patient.firstName} ${patient.lastName}</h3>
-    <p>Klinik: ${patient.managingClinic}</p>
-    <p>Puls: ${patient.puls || patient.Puls} | Blutdruck: ${patient.blutdruck || patient.Blutdruck}</p>
-    <p>Notfallstufe: ${patient.notfallstufe || patient.Notfallstufe}</p>
-    <p>Symptome: ${patient.sonstiges}</p>
-`;
-Sresult.appendChild(card);
-    })
+        Sresult.innerHTML =''
+        data.forEach(patient => {
+            const card = document.createElement('div');
+            card.innerHTML = `
+            <h3>${patient.firstName} ${patient.lastName}</h3>
+            <p>Klinik: ${patient.managingClinic}</p>
+            <p>Puls: ${patient.puls || patient.Puls} | Blutdruck: ${patient.blutdruck || patient.Blutdruck}</p>
+            <p>Notfallstufe: ${patient.notfallstufe || patient.Notfallstufe}</p>
+            <p>Symptome: ${patient.sonstiges}</p>
+        `;
+        Sresult.appendChild(card);
+    });
+    
+})
     .catch(error => console.error('Fehler: ', error))
 });
 
