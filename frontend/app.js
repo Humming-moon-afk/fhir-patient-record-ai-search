@@ -13,6 +13,13 @@ const Sresult = document.getElementById('Search-results')
 Sbutton.addEventListener('click', function(event) {
     const query = Sinput.value;
     console.log(query);
+
+    fetch('http://localhost:8080/api/patients/search?q=' + encodeURIComponent(query), {
+    method: 'GET'
+    })
+    .then(response => response.json())
+    .then(data => console.log(data))
+    .catch(error => console.error('Fehler: ', error))
 });
 
 
