@@ -5,9 +5,9 @@
 
     gap: 12px;
 
-    max-width: 350px;
+    max-width: 490px;
 
-    
+    width: 100%;
 }
 #Sonstiges {
 
@@ -17,6 +17,10 @@
 body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     background-color: darkgrey;
-    max-width: 600px;
-    margin:auto
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 0;
 }
