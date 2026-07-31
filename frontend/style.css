@@ -13,3 +13,10 @@
 
     height: 120px;
 }
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: darkgrey;
+    max-width: 600px;
+    margin:auto
+}
