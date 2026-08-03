@@ -7,7 +7,10 @@
     </head>
     <body>
     <h1> Patientenverwaltung </h1>
+    <main>
     <form id="PatientForm">
+        <fieldset>
+        <legend>Persönliche Daten</legend>
         <label for="firstName"> Vorname:</label>
         <input  id="firstName" name="firstName" type="text" required>
 
@@ -31,7 +34,9 @@
 
         <label for="managingClinic">Behandelne Klinik</label>
         <input id="managingClinic" name="managingClinic" type="text" required>
-        
+        </fieldset>
+        <fieldset>
+        <legend>Medizinische Angaben</legend>
         <label for="Puls">Heart-Rate</label>
         <input id="Puls" name="Puls" type="number" required>
 
@@ -40,22 +45,25 @@
 
         <label for="Notfallstufe">Emergency-level</label>
         <select id="Notfallstufe" name="Notfallstufe" required>
+            <option value="" disabled selected>Bitte wählen...</option>
             <option value="Normal">Normal</option>
             <option value="Dringend">Dringend</option>
             <option value="Notfall">Notfall</option>
         </select>
         <label for="Sonstiges">Sonstiges:</label>
         <textarea id="Sonstiges" name="Sonstiges"></textarea>
+        </fieldset>
         <button type="submit">Patient registrieren</button>
-
         </form>
 
         <section id="Vektor-search">
             <h2>Patienten-Vektorsuche</h2>
+            <label for="Search-input">Suche: </label>
             <input id="Search-input" type="text" placeholder="Symptome eingeben: ">
             <button id="Search-button" type="button">Suchen</button>
             <div id="Search-results"></div>
         </section>
+        </main>
         <script src="app.js"></script>
     </body>
 </html>
