@@ -113,3 +113,30 @@ button:hover {
     margin-top: 16px;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
 }
+
+#Search-results {
+    margin-top: 12px;
+    max-height: 200px;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.patient-card {
+    background: rgba(255, 255, 255, 0.75);
+    border: 1px solid rgba(255, 255, 255, 0.9);
+    border-radius: 10px;
+    padding: 10px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+}
+
+.patient-card h3 {
+    margin: 0 0 4px 0;
+    font-size: 15px;
+    color: #0051a8;
+}
+.patient-card p {
+    margin: 2px 0;
+    font-size: 12px;
+}

@@ -10,33 +10,6 @@ const Sbutton = document.getElementById('Search-button')
 
 const Sresult = document.getElementById('Search-results')
 
-Sbutton.addEventListener('click', function(event) {
-    const query = Sinput.value;
-    console.log(query);
-
-    fetch('http://localhost:8080/api/patients/search?q=' + encodeURIComponent(query), {
-    method: 'GET'
-    })
-    .then(response => response.json())
-    .then(data => {
-        Sresult.innerHTML =''
-        data.forEach(patient => {
-            const card = document.createElement('div');
-            card.innerHTML = `
-            <h3>${patient.firstName} ${patient.lastName}</h3>
-            <p><strong>Klinik:</strong> ${patient.managingClinic}</p>
-            <p><strong>Puls:</strong> ${patient.puls || patient.Puls || '-'} | <strong>Blutdruck:</strong> ${patient.blutdruck || patient.Blutdruck || '-'}</p>
-            <p><strong>Notfallstufe:</strong> ${patient.notfallstufe || patient.Notfallstufe || 'Normal'}</p>
-            <p><strong>Symptome:</strong> ${patient.sonstiges}</p>
-            `;
-        Sresult.appendChild(card);
-    });
-    
-})
-    .catch(error => console.error('Fehler: ', error))
-});
-
-
 function updateEmergencyColor() {
    if(emergencyColor.value == 'Normal') {
     emergencyColor.style.background = 'green'
@@ -53,6 +26,46 @@ emergencyColor.addEventListener('change', function(event) {
    updateEmergencyColor();
 })
 
+
+Sbutton.addEventListener('click', function(event) {
+    const query = Sinput.value;
+    console.log(query);
+
+    Sresult.innerHTML='<p style="font-size: 12px;">Suche läuft...</p>';
+    
+    fetch('http://localhost:8080/api/patients/search?q=' + encodeURIComponent(query), {
+       method: 'GET'
+
+    })
+    .then (response => {
+        if(!response.ok) throw new Error('Server issue');
+        return response.json();
+    })
+    .then (data => {
+        Sresult.innerHTML = '';
+
+        if(!data || data.length === 0) {
+            Sresult.innerHTML = '<p style="font-size: 12px; color: #555;">Keine Patienten gefunden.</p>';
+            return;
+        }
+        data.forEach(patient => {
+            const card = document.createElement('div');
+            card.classList.add('patient-card');
+            card.innerHTML = `
+                <h3>${patient.firstName} ${patient.lastName}</h3>
+                <p><strong>Klinik:</strong> ${patient.managingClinic}</p>
+                <p><strong>Puls:</strong> ${patient.puls || patient.Puls || '-'} | <strong>Blutdruck:</strong> ${patient.blutdruck || patient.Blutdruck || '-'}</p>
+                <p><strong>Notfallstufe:</strong> ${patient.notfallstufe || patient.Notfallstufe || 'Normal'}</p>
+                <p><strong>Symptome:</strong> ${patient.sonstiges || '-'}</p>
+            `;
+            Sresult.appendChild(card);
+        });
+    })
+    .catch(error => {
+        console.error('Fehler: ', error);
+        Sresult.innerHTML = '<p style="font-size: 12px; color: red;">Verbindung zum Server fehlgeschlagen.</p>';
+    });
+});
 patientForm.addEventListener('submit', function(event) {
     event.preventDefault();
 
@@ -71,11 +84,10 @@ patientForm.addEventListener('submit', function(event) {
     })
     .then(response => response.text())
     .then(data => {
-        // fix: delete alert and clean up
-        patientForm.reset()
+        patientForm.reset();
+        updateEmergencyColor();
     })
     .catch(error => {
-        console.error('Fehler beim Übertragen:', error);
+        console.error('Issue: ', error);
     });
 });
-
