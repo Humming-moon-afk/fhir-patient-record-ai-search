@@ -8,16 +8,16 @@
     <body>
     <form id="PatientForm">
         <label for="firstName"> Vorname:</label>
-        <input id="firstName" name="firstName" type="text">
+        <input  id="firstName" name="firstName" type="text" required>
 
         <label for="lastName">Nachname:</label>
-        <input id="lastName" name="lastName" type="text">
+        <input id="lastName" name="lastName" type="text" required>
 
         <label for="patientID">Patienten-ID:</label>
-        <input id="patientID" name="patientID" type="text">
+        <input id="patientID" name="patientID" type="text" required>
 
         <label for="gender">Geschlecht:</label>
-        <select id="gender" name="gender">
+        <select id="gender" name="gender" required>
             <option value="female">Weiblich</option>
             <option value="male">Männlich</option>
             <option value="other">Anders</option>
@@ -25,26 +25,25 @@
         </select>
 
         <label for="birthDate">Geburtsdatum:</label>
-        <input id="birthDate" name="birthDate" type="date">
+        <input id="birthDate" name="birthDate" type="date" required>
 
         <label for="managingClinic">Behandelne Klinik</label>
-        <input id="managingClinic" name="managingClinic" type="text">
+        <input id="managingClinic" name="managingClinic" type="text" required>
         
         <label for="Puls">Heart-Rate</label>
-        <input id="Puls" name="Puls" type="text">
+        <input id="Puls" name="Puls" type="number" required>
 
         <label for="Blutdruck">Blood-pressure</label>
-        <input id="Blutdruck" name="Blutdruck" type="text">
+        <input id="Blutdruck" name="Blutdruck" type="text" required>
 
         <label for="Notfallstufe">Emergency-level</label>
-        <select id="Notfallstufe" name="Notfallstufe">
+        <select id="Notfallstufe" name="Notfallstufe" required>
             <option value="Normal">Normal</option>
             <option value="Dringend">Dringend</option>
             <option value="Notfall">Notfall</option>
         </select>
         <label for="Sonstiges">Sonstiges:</label>
         <textarea id="Sonstiges" name="Sonstiges"></textarea>
-        
         <button type="submit">Patient registrieren</button>
 
         </form>

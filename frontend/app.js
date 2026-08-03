@@ -71,8 +71,8 @@ patientForm.addEventListener('submit', function(event) {
     })
     .then(response => response.text())
     .then(data => {
-        console.log('Server-Antwort', data);
-        alert('Patient erfolgreich an das Backend übermittelt!');
+        // fix: delete alert and clean up
+        patientForm.reset()
     })
     .catch(error => {
         console.error('Fehler beim Übertragen:', error);
