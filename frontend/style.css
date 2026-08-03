@@ -81,7 +81,7 @@ fieldset {
 }
 
 button {
-    width: 100px;
+    width: 100%;
     padding: 10px 16px;
     border: none;
     border-radius: 20px;
@@ -94,4 +94,13 @@ button {
 }
 button:hover {
     filter: brightness(1.1);
+}
+
+#Vektor-search {
+    background: rgba(255, 255, 255, 0.45);
+    backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.6);
+    border-radius: 16px;
+    padding: 20px;
+    flex: 1;
 }
