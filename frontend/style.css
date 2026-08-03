@@ -1,3 +1,13 @@
+* {
+    box-sizing: border-box;
+}
+
+:root {
+    --bg-gradient-start: #70e1ff;
+    --bg-gradient-end: #0051a8;
+    --text-main: #1c2d42;
+}
+
 #PatientForm {
     display: flex;
 
@@ -16,7 +26,7 @@
 
 body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background-color: darkgrey;
+    background: ;
     min-height: 100vh;
     display: flex;
     flex-direction: column;
